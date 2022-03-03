@@ -11,8 +11,7 @@ namespace Console_Project.Operations
     {
         public List<Group> groups = new List<Group>();
         public List<Student> students = new List<Student>();
-        
-        
+                
         public string CreateGroup(string no, bool isonline, Categories category)
         {
             if(no.Length==0)
@@ -22,66 +21,47 @@ namespace Console_Project.Operations
             if (!CheckGroupNo(no))
             {
                 return "Please write GroupNo correctly.";
-            }
+            }                  
             Console.WriteLine($"Created GroupNo: {no}");
             Group group = new Group(no, category, isonline);
             groups.Add(group);
-            return group.No;
-
-            
-        }
-
-        public string CreateStudent(string fullname,string no)
-        {
-            if (CheckFullname(fullname))
+            if (isonline)
             {
-                Console.WriteLine($"Created Student {fullname}");
-                Student student = new Student(fullname, no);
-                students.Add(student);
-                return student.Fullname;
-                
+                group.Limit = 15;
             }
-            return "Wrong. Write again";
-
+            else
+            {
+                group.Limit = 10;
+            }
+            return group.No;            
         }
+        public void ShowAllGroups()
+        {
+            if (groups.Count == 0)
+            {
+                Console.WriteLine("There's no group that exists");
+            }
 
+            foreach (Group group in groups)
+            {
+                Console.WriteLine($"GroupNo: {group.No}\nCategory: {group.Category}\nStudentCount: {students.Count}");//helelik groups.count goster
+            }
+        }
         public void EditGroup(string no, string newNo)
         {
-            
             Group existGroup = FindGroup(no);
             if (existGroup == null)
             {
                 Console.WriteLine("Please input valid value");
                 return;
             }
-            if (existGroup.No.ToLower().Trim() == newNo.ToLower().Trim()) 
+            if (existGroup.No.ToLower().Trim() == newNo.ToLower().Trim())
             {
                 Console.WriteLine("This group already exists");
                 return;
             }
             existGroup.No = newNo;
             Console.WriteLine($"{no} Hall has been successfuly changed to {newNo}");
-
-        }
-
-        public void ShowAllGroups()
-        {
-            
-            foreach (Group group in groups)
-            {
-                Console.WriteLine($"GroupNo: {group.No}\nCategory: {group.Category}\nStudentCount: {groups.Count}");//helelik groups.count goster
-            }
-            
-        }
-
-        public void ShowAllStudents()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ShowStudentsInGroup()
-        {
-            throw new NotImplementedException();
         }
         public Group FindGroup(string no)
         {
@@ -91,14 +71,68 @@ namespace Console_Project.Operations
                 {
                     return group;
                 }
-                
             }
             return null;
         }
-        public static bool CheckGroupNo(string groupno)
+        public void ShowStudentsInGroup(string no, List<Student> students)
+        {
+            Group group = FindGroup(no);
+            if (group == null)
+            {
+                Console.WriteLine("Write something mf");
+                return;
+            }
+            
+            foreach (Student student in group.Students )
+            {
+                Console.WriteLine(student.Fullname);
+            }
+        }
+        public void ShowAllStudents()
+        {
+            if (students.Count == 0)
+            {
+                Console.WriteLine("There's no students.");
+                return;
+            }
+            foreach (Group student in groups)
+            {
+                Console.WriteLine($"Fullname: {student.Students}\nGroupNo: {student.No}\nIsOnline: {student.IsOnline}");
+            }            
+        }
+        public string CreateStudent(string fullname,string no,bool iswarranted)
         {
             
-          
+            Group group = FindGroup(no);
+            if(group == null)
+            {                
+                return "There's no group to add Students";
+            }
+            if (group.IsOnline)
+            {
+                if (group.Limit > 15)
+                {
+                    return "There cant be more than 15 students in online group";
+                }            
+            }
+            else
+            {
+                if (group.Limit > 10)
+                {
+                    return "There cant be more than 10 students in offline group";
+                }
+            }
+            if (CheckFullname(fullname))
+            {
+                Console.WriteLine($"Created Student {fullname}");
+                Student student = new Student(fullname, no, iswarranted);
+                students.Add(student);
+                return student.Fullname;                
+            }
+            return "Wrong. Write again";
+        }
+        public static bool CheckGroupNo(string groupno)
+        {                      
             if (groupno.Length == 4 && char.IsUpper(groupno[0]))
             {
                 for (int i = 1; i < groupno.Length; i++)
@@ -163,6 +197,5 @@ namespace Console_Project.Operations
                 return false;
             }
         }
-
     }
 }

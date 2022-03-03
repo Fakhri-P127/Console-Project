@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Console_Project.Enums;
+using Console_Project.Operations;
 
 namespace Console_Project.Models
 {
@@ -15,22 +16,13 @@ namespace Console_Project.Models
         public Categories Category;
 
         public Group(string no, Categories category, bool isonline)
-        {
-            
+        {            
             bool result1 = CheckGroupNo(no);
             if (result1)
             {
                 No = no;
             }
-            IsOnline = isonline;
-            if (isonline)
-            {
-                Limit = 15;
-            }
-            else
-            {
-                Limit = 10;
-            }
+            IsOnline = isonline;            
             
             switch (category)
             {
@@ -47,12 +39,11 @@ namespace Console_Project.Models
                     Console.WriteLine("The class you chose does not exist. Please choose valid option");
                     break;
             }
-            Category = category;
-                       
+            Category = category;                       
         }
+
         public static bool CheckGroupNo(string groupno)
         {
-            
             if (groupno.Length == 4 && char.IsUpper(groupno[0]))
             {
                 for (int i = 1; i < groupno.Length; i++)
@@ -71,6 +62,5 @@ namespace Console_Project.Models
                 return false;
             }
         }
-
     }
 }

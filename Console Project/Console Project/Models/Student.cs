@@ -10,11 +10,11 @@ namespace Console_Project.Models
         public string GroupNo;
         public bool IsWarranted;
 
-        public Student(string fullname, string groupno)
+        public Student(string fullname, string groupno,bool iswarranted)
         {
             Fullname = fullname;
             GroupNo = groupno;
-            IsWarranted = false;
+            IsWarranted = iswarranted;
         }        
     }
 }

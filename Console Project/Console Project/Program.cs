@@ -24,30 +24,30 @@ namespace Console_Project
                 string strNum = Console.ReadLine();
                 bool result = int.TryParse(strNum, out num);
 
-                if (result)
-                {
-                    switch (num)
-                    {
-                        case 1:
-                            MenuServices.MenuCreateGroup();
-                            break;
-                        case 2:
-                            MenuServices.MenuShowAllGroups();
-                            break;
-                        case 3:
-                            MenuServices.MenuEditGroup();
-                            break;
-                        case 4:
-                            MenuServices.MenuCreateStudent();
-                            break;
-                        case 0:
-                            Console.WriteLine("You exited the program");
-                            break;
-                        default:
-                            Console.WriteLine("Enter a number that exists in groups");
-                            break;
-                    }
-                }
+                //if (result)
+                //{
+                //    switch (num)
+                //    {
+                //        case 1:
+                //            MenuServices.MenuCreateGroup();
+                //            break;
+                //        case 2:
+                //            MenuServices.MenuShowAllGroups();
+                //            break;
+                //        case 3:
+                //            MenuServices.MenuEditGroup();
+                //            break;
+                //        case 4:
+                //            MenuServices.MenuCreateStudent();
+                //            break;
+                //        case 0:
+                //            Console.WriteLine("You exited the program");
+                //            break;
+                //        default:
+                //            Console.WriteLine("Enter a number that exists in groups");
+                //            break;
+                //    }
+                //}
                 
             } while (num!=0);
             
