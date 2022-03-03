@@ -7,14 +7,21 @@ namespace Console_Project.Models
 {
     class Group
     {
+        public static int count = 0;
         public string No;        
         public bool IsOnline;
         public byte Limit;
-        public Student[] Students;
+        public List<Student> Students;
         public Categories Category;
 
         public Group(string no, Categories category, bool isonline)
         {
+            
+            bool result1 = CheckGroupNo(no);
+            if (result1)
+            {
+                No = no;
+            }
             IsOnline = isonline;
             if (isonline)
             {
@@ -24,7 +31,7 @@ namespace Console_Project.Models
             {
                 Limit = 10;
             }
-
+            
             switch (category)
             {
                 case Categories.Programming:
@@ -41,15 +48,11 @@ namespace Console_Project.Models
                     break;
             }
             Category = category;
-
-            if (CheckGroupNo(no))
-            {
-                No = no;
-            }
-            
+                       
         }
         public static bool CheckGroupNo(string groupno)
-        {            
+        {
+            
             if (groupno.Length == 4 && char.IsUpper(groupno[0]))
             {
                 for (int i = 1; i < groupno.Length; i++)
@@ -60,7 +63,7 @@ namespace Console_Project.Models
                         return false;
                     }
                 }
-                return true;               
+                return true;
             }
             else
             {
@@ -68,5 +71,6 @@ namespace Console_Project.Models
                 return false;
             }
         }
+
     }
 }

@@ -12,3 +12,17 @@ C:\Users\efend\source\repos\Console Project\Console Project\obj\Debug\netcoreapp
 C:\Users\efend\source\repos\Console Project\Console Project\obj\Debug\netcoreapp3.1\Console Project.dll
 C:\Users\efend\source\repos\Console Project\Console Project\obj\Debug\netcoreapp3.1\Console Project.pdb
 C:\Users\efend\source\repos\Console Project\Console Project\obj\Debug\netcoreapp3.1\Console Project.genruntimeconfig.cache
+C:\Users\fakhrita\source\repos\Console-Project\Console Project\Console Project\bin\Debug\netcoreapp3.1\Console Project.exe
+C:\Users\fakhrita\source\repos\Console-Project\Console Project\Console Project\bin\Debug\netcoreapp3.1\Console Project.deps.json
+C:\Users\fakhrita\source\repos\Console-Project\Console Project\Console Project\bin\Debug\netcoreapp3.1\Console Project.runtimeconfig.json
+C:\Users\fakhrita\source\repos\Console-Project\Console Project\Console Project\bin\Debug\netcoreapp3.1\Console Project.runtimeconfig.dev.json
+C:\Users\fakhrita\source\repos\Console-Project\Console Project\Console Project\bin\Debug\netcoreapp3.1\Console Project.dll
+C:\Users\fakhrita\source\repos\Console-Project\Console Project\Console Project\bin\Debug\netcoreapp3.1\Console Project.pdb
+C:\Users\fakhrita\source\repos\Console-Project\Console Project\Console Project\obj\Debug\netcoreapp3.1\Console Project.csproj.AssemblyReference.cache
+C:\Users\fakhrita\source\repos\Console-Project\Console Project\Console Project\obj\Debug\netcoreapp3.1\Console Project.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\fakhrita\source\repos\Console-Project\Console Project\Console Project\obj\Debug\netcoreapp3.1\Console Project.AssemblyInfoInputs.cache
+C:\Users\fakhrita\source\repos\Console-Project\Console Project\Console Project\obj\Debug\netcoreapp3.1\Console Project.AssemblyInfo.cs
+C:\Users\fakhrita\source\repos\Console-Project\Console Project\Console Project\obj\Debug\netcoreapp3.1\Console Project.csproj.CoreCompileInputs.cache
+C:\Users\fakhrita\source\repos\Console-Project\Console Project\Console Project\obj\Debug\netcoreapp3.1\Console Project.dll
+C:\Users\fakhrita\source\repos\Console-Project\Console Project\Console Project\obj\Debug\netcoreapp3.1\Console Project.pdb
+C:\Users\fakhrita\source\repos\Console-Project\Console Project\Console Project\obj\Debug\netcoreapp3.1\Console Project.genruntimeconfig.cache
