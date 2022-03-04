@@ -9,35 +9,47 @@ namespace Console_Project.Operations
 {
     class AcademyService : IAcademyServices
     {
-        public List<Group> groups = new List<Group>();
+        private List<Group> _groups = new List<Group>();
+        public List<Group> Groups => _groups;
         public List<Student> students = new List<Student>();
                 
-        public string CreateGroup(string no, bool isonline, Categories category)
+        public void CreateGroup(string no, bool isonline, Categories category)
         {
             //bu kodlara ehtiyac yoxdu, CheckGroupNo metodu bunlari ozu edir
-            if (no.Length == 0)
-            {               
-                return "Please write something.";
-            }
-            if (!CheckGroupNo(no))
+            //if (no.Length == 0)
+            //{               
+            //    return "Please write something.";
+            //}
+            //if (!CheckGroupNo(no))
+            //{
+            //    return "Please write GroupNo correctly.";
+            //}
+            foreach (Group group1 in Groups)
             {
-                return "Please write GroupNo correctly.";
+                if (isonline)
+                {
+                    group1.Limit = 15;                    
+                }
+                else
+                {
+                    group1.Limit = 1;                 
+                }
             }
             Group group = new Group(no, category, isonline);
             Console.WriteLine($"Created GroupNo: {no}");
-            groups.Add(group);
-            return group.No;         
-        }
-        
+            Groups.Add(group);                   
+        }      
         public void ShowAllGroups()
         {
-            if (groups.Count == 0)
+            if (Groups.Count == 0)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("There's no group that exists");
+                return;
             }
-            foreach (Group group in groups)
+            foreach (Group group in Groups)
             {
-                Console.WriteLine($"GroupNo: {group.No}\nCategory: {group.Category}\nStudentCount: {group.GroupStudents.Count} IsOnline:{group.IsOnline}");
+                Console.WriteLine($"GroupNo: {group.No}\nCategory: {group.Category}\nStudentCount: {group.GroupStudents.Count}\nIsOnline:{group.IsOnline}");
             }
         }
         public void EditGroup(string no, string newNo)
@@ -45,11 +57,13 @@ namespace Console_Project.Operations
             Group existGroup = FindGroup(no);
             if (existGroup == null)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Please input valid value");
                 return;
             }
             if (existGroup.No.ToLower().Trim() == newNo.ToLower().Trim())
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("This group already exists");
                 return;
             }
@@ -58,7 +72,7 @@ namespace Console_Project.Operations
         }
         public Group FindGroup(string no)
         {
-            foreach (Group group in groups)
+            foreach (Group group in Groups)
             {
                 if (group.No.ToLower().Trim() == no.ToLower().Trim())
                 {
@@ -72,56 +86,68 @@ namespace Console_Project.Operations
             Group group = FindGroup(no);
             if (group == null)
             {
-                Console.WriteLine("Write something ");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Please enter valid input");
+                return;
+            }
+            if (group.GroupStudents.Count == 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("There's no students in this group");
                 return;
             }
             if(no.ToLower().Trim() == group.No.ToLower().Trim())
             {               
                     foreach (Student student in group.GroupStudents)
                     {
-                        Console.WriteLine($"Fullname: {student.Fullname}, IsWarranted: {student.IsWarranted}, GroupNo: {student.GroupNo}");
+                        Console.WriteLine($"Fullname: {student.Fullname},GroupNo: {student.GroupNo}, IsWarranted: {student.IsWarranted}");
                     }                                    
             }            
-        }
-        
+        }        
         public void ShowAllStudents()
         {            
             if (students.Count == 0)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("There's no students.");
                 return;
             }
             foreach (Student student in students)
             {                
-                Console.WriteLine($"Fullname: {student.Fullname}\nGroupNo: {student.GroupNo}\nIsOnline: {student.IsWarranted}");
+                Console.WriteLine($"Fullname: {student.Fullname}\nGroupNo: {student.GroupNo}\nIsWarranted: {student.IsWarranted}");
             }            
         }
-        public string CreateStudent(string fullname,string no,bool iswarranted)
+        public void CreateStudent(string fullname,string no,bool iswarranted)
         {            
             Group group = FindGroup(no);
-            if (groups.Count == 0)
+            if (Groups.Count == 0)
             {
-                return "There's no group to add Students";                                
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("There's no group to add Students");
+                return;
             }
             if(group == null)
             {
-                return "Enter a group that exists";
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Enter a group that exists");
+                return;
             }                                    
             if (!CheckFullname(fullname))
-            {
-                return "Fullname is wrong.";                
+            {   //bunlara da ehtiac yoxdur cunki Checkfullname metodu ozu errorlari bildirir
+                //Console.ForegroundColor = ConsoleColor.Red;
+                //Console.WriteLine("Fullname is wrong.");
+                return;                
             }
             if (group.Limit < group.GroupStudents.Count)
             {
-                return $"You passed the limit. This Group's max limit is {group.Limit}";
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"You passed the limit. This Group's max limit is {group.Limit+1}");
+                return;
             }
             Console.WriteLine($"Created Student {fullname}");
             Student student = new Student(fullname, no, iswarranted);
             students.Add(student);
-            group.GroupStudents.Add(student);
-            return student.Fullname;
-            
-            
+            group.GroupStudents.Add(student);                                                
         }
         public static bool CheckGroupNo(string groupno)
         {                      
@@ -131,6 +157,7 @@ namespace Console_Project.Operations
                 {
                     if (!char.IsDigit(groupno[i]))
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("After the first uppercase all 3 characters must be a digit");
                         return false;
                     }
@@ -139,6 +166,7 @@ namespace Console_Project.Operations
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("GroupNo needs to be 4 characters long. First character must be an uppercase letter and last 3 characters should be all digits");
                 return false;
             }
@@ -173,18 +201,21 @@ namespace Console_Project.Operations
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("After an Uppercase(in name and surname) all characters should be lowercase");
                         return false;
                     }
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Name and Surname has to start with an Uppercase ");
                     return false;
                 }
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Fullname must include 3 parts: Name + Space + Surname. Example(Fakhri Afandiyev)");
                 return false;
             }

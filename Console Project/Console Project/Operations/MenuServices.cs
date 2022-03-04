@@ -20,14 +20,14 @@ namespace Console_Project.Operations
             if (str == "yes")
             {
                 isonline = true;
-
             }
             else if (str == "no")
             {
                 isonline = false;
             }
-            else if (!(str == "yes") || !(str == "no"))
+            else 
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Enter only 'yes' or 'no'");
                 return;
             }
@@ -38,10 +38,8 @@ namespace Console_Project.Operations
                 {
                     Console.WriteLine($"{(int)item}.{item}");
                 }
-
                 string strCategory = Console.ReadLine();
-                bool result = int.TryParse(strCategory, out int category);
-                
+                bool result = int.TryParse(strCategory, out int category);                
                 if (result)
                 {
                     switch (category)
@@ -56,6 +54,7 @@ namespace Console_Project.Operations
                             academyService.CreateGroup(strNum, isonline, Categories.SystemAdministration);
                             break;
                         default:
+                            Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("Please choose a valid option");
                             break;
                     }
@@ -69,7 +68,7 @@ namespace Console_Project.Operations
 
         public static void MenuEditGroup()
         {
-            if (academyService.groups.Count == 0)
+            if (academyService.Groups.Count == 0)
             {
                 Console.WriteLine("No Group exists");
                 return;
@@ -114,13 +113,11 @@ namespace Console_Project.Operations
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Write valid value");
                 return;
-            }
-           
-            academyService.CreateStudent(fullname, newGroup,iswarranted);
-            //string strScore = Console.ReadLine();
-            //bool result = int.TryParse(strScore, out score);
+            }           
+            academyService.CreateStudent(fullname, newGroup,iswarranted);           
         }
     }
 }

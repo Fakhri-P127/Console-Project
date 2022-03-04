@@ -8,12 +8,11 @@ namespace Console_Project.Interfaces
 {
     interface IAcademyServices
     {
-        public string CreateGroup(string no, bool isonline, Categories category);
+        public void CreateGroup(string no, bool isonline, Categories category);
         public void ShowAllGroups();
         public void EditGroup(string no, string newNo);
         public void ShowStudentsInGroup(string no);
         public void ShowAllStudents();
-        public string CreateStudent(string fullname, string no, bool iswarranted);
-
+        public void CreateStudent(string fullname, string no, bool iswarranted);
     }
 }
