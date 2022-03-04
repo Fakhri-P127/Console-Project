@@ -14,14 +14,15 @@ namespace Console_Project.Operations
                 
         public string CreateGroup(string no, bool isonline, Categories category)
         {
-            if(no.Length==0)
-            {
+            //bu kodlara ehtiyac yoxdu, CheckGroupNo metodu bunlari ozu edir
+            if (no.Length == 0)
+            {               
                 return "Please write something.";
             }
             if (!CheckGroupNo(no))
             {
                 return "Please write GroupNo correctly.";
-            }      
+            }
             Group group = new Group(no, category, isonline);
             Console.WriteLine($"Created GroupNo: {no}");
             groups.Add(group);
@@ -34,7 +35,6 @@ namespace Console_Project.Operations
             {
                 Console.WriteLine("There's no group that exists");
             }
-
             foreach (Group group in groups)
             {
                 Console.WriteLine($"GroupNo: {group.No}\nCategory: {group.Category}\nStudentCount: {group.GroupStudents.Count} IsOnline:{group.IsOnline}");
@@ -99,24 +99,29 @@ namespace Console_Project.Operations
         public string CreateStudent(string fullname,string no,bool iswarranted)
         {            
             Group group = FindGroup(no);
-            //Student student1;
-            if(group == null)
-            {                
-                return "There's no group to add Students";
-            }                                    
-            if (CheckFullname(fullname))
+            if (groups.Count == 0)
             {
-                Console.WriteLine($"Created Student {fullname}");
-                Student student = new Student(fullname, no, iswarranted);
-                students.Add(student);
-                group.GroupStudents.Add(student);
-                if(group.Limit<group.GroupStudents.Count)
-                {                    
-                    return $"You passed the limit. This Group's max limit is {group.Limit}";
-                }    
-                return student.Fullname;
+                return "There's no group to add Students";                                
             }
-            return "Wrong. Write again";
+            if(group == null)
+            {
+                return "Enter a group that exists";
+            }                                    
+            if (!CheckFullname(fullname))
+            {
+                return "Fullname is wrong.";                
+            }
+            if (group.Limit < group.GroupStudents.Count)
+            {
+                return $"You passed the limit. This Group's max limit is {group.Limit}";
+            }
+            Console.WriteLine($"Created Student {fullname}");
+            Student student = new Student(fullname, no, iswarranted);
+            students.Add(student);
+            group.GroupStudents.Add(student);
+            return student.Fullname;
+            
+            
         }
         public static bool CheckGroupNo(string groupno)
         {                      
@@ -140,8 +145,8 @@ namespace Console_Project.Operations
         }
         public static bool CheckFullname(string fullname)
         {
-            bool notAllLower1 = false;
-            bool notAllLower2 = false;
+            bool notAllLowerFirstName = false;
+            bool notAllLowerLastName = false;
 
             string[] splitFullname = fullname.Split(" ");
             if (splitFullname.Length == 2) //2 cunki(name and surname)
@@ -152,17 +157,17 @@ namespace Console_Project.Operations
                     {
                         if (!char.IsLower(splitFullname[0][i]))
                         {
-                            notAllLower1 = true;
+                            notAllLowerFirstName = true;
                         }
                     }
                     for (int i = 1; i < splitFullname[1].Length; i++)
                     {
                         if (!char.IsLower(splitFullname[1][i]))
                         {
-                            notAllLower2 = true;
+                            notAllLowerLastName = true;
                         }
                     }
-                    if (!notAllLower1 && !notAllLower2)
+                    if (!notAllLowerFirstName && !notAllLowerLastName)
                     {
                         return true;
                     }

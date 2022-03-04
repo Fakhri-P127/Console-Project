@@ -16,23 +16,22 @@ namespace Console_Project.Models
         public Categories Category;
 
         public Group(string no, Categories category, bool isonline)
-        {            
-            bool result1 = CheckGroupNo(no);
-            if (result1)
-            {
+        {
+            byte limit;
                 No = no;
-            }
+            
             
             if (isonline)
             {
-                Limit = 15;                
+                limit = 15;                
             }
             else
             {
-                Limit = 10;
+                limit = 1;
             }
-            
+            Limit = limit;
             IsOnline = isonline;
+            
             GroupStudents = new List<Student>(Limit);
             switch (category)
             {
@@ -51,25 +50,25 @@ namespace Console_Project.Models
             }
             Category = category;                       
         }
-        public static bool CheckGroupNo(string groupno)
-        {
-            if (groupno.Length == 4 && char.IsUpper(groupno[0]))
-            {
-                for (int i = 1; i < groupno.Length; i++)
-                {
-                    if (!char.IsDigit(groupno[i]))
-                    {
-                        Console.WriteLine("After the first uppercase all 3 characters must be a digit");
-                        return false;
-                    }
-                }
-                return true;
-            }
-            else
-            {
-                Console.WriteLine("GroupNo needs to be 4 characters long. First character must be an uppercase letter and last 3 characters should be all digits");
-                return false;
-            }
-        }
+        //public static bool CheckGroupNo(string groupno)
+        //{
+        //    if (groupno.Length == 4 && char.IsUpper(groupno[0]))
+        //    {
+        //        for (int i = 1; i < groupno.Length; i++)
+        //        {
+        //            if (!char.IsDigit(groupno[i]))
+        //            {
+        //                Console.WriteLine("After the first uppercase all 3 characters must be a digit");
+        //                return false;
+        //            }
+        //        }
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("GroupNo needs to be 4 characters long. First character must be an uppercase letter and last 3 characters should be all digits");
+        //        return false;
+        //    }
+        //}
     }
 }

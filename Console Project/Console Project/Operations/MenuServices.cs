@@ -11,14 +11,11 @@ namespace Console_Project.Operations
         public static AcademyService academyService = new AcademyService();
 
         public static void MenuCreateGroup()
-        {
-            bool isonline = false;
+        {            
             Console.WriteLine("Insert a GroupNo:");
-
-           
             string strNum = Console.ReadLine();
-
-            Console.WriteLine("isonline");
+            bool isonline = false;
+            Console.WriteLine("Is this group online?\nEnter only: yes/no");            
             string str = Console.ReadLine();
             if (str == "yes")
             {
@@ -29,12 +26,12 @@ namespace Console_Project.Operations
             {
                 isonline = false;
             }
-            else if (str != "yes" && str != "no")
+            else if (!(str == "yes") || !(str == "no"))
             {
-                Console.WriteLine("err 404");
+                Console.WriteLine("Enter only 'yes' or 'no'");
                 return;
             }
-            if (Group.CheckGroupNo(strNum))
+            if (AcademyService.CheckGroupNo(strNum))
             {
                 Console.WriteLine("Choose the category you want to study in");                
                 foreach (Categories item in Enum.GetValues(typeof(Categories)))
@@ -62,23 +59,7 @@ namespace Console_Project.Operations
                             Console.WriteLine("Please choose a valid option");
                             break;
                     }
-                }
-                //Console.WriteLine("Is it an online class?");
-                //Console.WriteLine("Answer with\n yes/no");
-                //string str = Console.ReadLine();
-                //if (str == "yes")
-                //{
-                //     group.IsOnline = true; ;
-                //}
-                //else if (str == "no")
-                //{
-                //    group.IsOnline = false; ;
-                //}
-                //else
-                //{
-                //    return "yes/no should be the only answer. anything other than that is wrong";
-                //}
-
+                }                       
             }                      
         }
         public static void MenuShowAllGroups()
@@ -141,6 +122,5 @@ namespace Console_Project.Operations
             //string strScore = Console.ReadLine();
             //bool result = int.TryParse(strScore, out score);
         }
-
     }
 }
