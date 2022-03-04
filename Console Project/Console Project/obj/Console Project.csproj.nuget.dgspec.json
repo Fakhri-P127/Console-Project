@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\efend\\source\\repos\\Console-Project\\Console Project\\Console Project\\Console Project.csproj": {}
+    "C:\\Users\\fakhrita\\source\\repos\\Console-Project\\Console Project\\Console Project\\Console Project.csproj": {}
   },
   "projects": {
-    "C:\\Users\\efend\\source\\repos\\Console-Project\\Console Project\\Console Project\\Console Project.csproj": {
+    "C:\\Users\\fakhrita\\source\\repos\\Console-Project\\Console Project\\Console Project\\Console Project.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\efend\\source\\repos\\Console-Project\\Console Project\\Console Project\\Console Project.csproj",
+        "projectUniqueName": "C:\\Users\\fakhrita\\source\\repos\\Console-Project\\Console Project\\Console Project\\Console Project.csproj",
         "projectName": "Console Project",
-        "projectPath": "C:\\Users\\efend\\source\\repos\\Console-Project\\Console Project\\Console Project\\Console Project.csproj",
-        "packagesPath": "C:\\Users\\efend\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\efend\\source\\repos\\Console-Project\\Console Project\\Console Project\\obj\\",
+        "projectPath": "C:\\Users\\fakhrita\\source\\repos\\Console-Project\\Console Project\\Console Project\\Console Project.csproj",
+        "packagesPath": "C:\\Users\\fakhrita\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\fakhrita\\source\\repos\\Console-Project\\Console Project\\Console Project\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\efend\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\fakhrita\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -54,7 +54,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.405\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -21,20 +21,13 @@ namespace Console_Project.Operations
             if (!CheckGroupNo(no))
             {
                 return "Please write GroupNo correctly.";
-            }                  
-            Console.WriteLine($"Created GroupNo: {no}");
+            }      
             Group group = new Group(no, category, isonline);
+            Console.WriteLine($"Created GroupNo: {no}");
             groups.Add(group);
-            if (isonline)
-            {
-                group.Limit = 15;
-            }
-            else
-            {
-                group.Limit = 10;
-            }
-            return group.No;            
+            return group.No;         
         }
+        
         public void ShowAllGroups()
         {
             if (groups.Count == 0)
@@ -44,7 +37,7 @@ namespace Console_Project.Operations
 
             foreach (Group group in groups)
             {
-                Console.WriteLine($"GroupNo: {group.No}\nCategory: {group.Category}\nStudentCount: {students.Count}");//helelik groups.count goster
+                Console.WriteLine($"GroupNo: {group.No}\nCategory: {group.Category}\nStudentCount: {group.GroupStudents.Count} IsOnline:{group.IsOnline}");
             }
         }
         public void EditGroup(string no, string newNo)
@@ -74,60 +67,54 @@ namespace Console_Project.Operations
             }
             return null;
         }
-        public void ShowStudentsInGroup(string no, List<Student> students)
+        public void ShowStudentsInGroup(string no)
         {
             Group group = FindGroup(no);
             if (group == null)
             {
-                Console.WriteLine("Write something mf");
+                Console.WriteLine("Write something ");
                 return;
             }
-            
-            foreach (Student student in group.Students )
-            {
-                Console.WriteLine(student.Fullname);
-            }
+            if(no.ToLower().Trim() == group.No.ToLower().Trim())
+            {               
+                    foreach (Student student in group.GroupStudents)
+                    {
+                        Console.WriteLine($"Fullname: {student.Fullname}, IsWarranted: {student.IsWarranted}, GroupNo: {student.GroupNo}");
+                    }                                    
+            }            
         }
+        
         public void ShowAllStudents()
-        {
+        {            
             if (students.Count == 0)
             {
                 Console.WriteLine("There's no students.");
                 return;
             }
-            foreach (Group student in groups)
-            {
-                Console.WriteLine($"Fullname: {student.Students}\nGroupNo: {student.No}\nIsOnline: {student.IsOnline}");
+            foreach (Student student in students)
+            {                
+                Console.WriteLine($"Fullname: {student.Fullname}\nGroupNo: {student.GroupNo}\nIsOnline: {student.IsWarranted}");
             }            
         }
         public string CreateStudent(string fullname,string no,bool iswarranted)
-        {
-            
+        {            
             Group group = FindGroup(no);
+            //Student student1;
             if(group == null)
             {                
                 return "There's no group to add Students";
-            }
-            if (group.IsOnline)
-            {
-                if (group.Limit > 15)
-                {
-                    return "There cant be more than 15 students in online group";
-                }            
-            }
-            else
-            {
-                if (group.Limit > 10)
-                {
-                    return "There cant be more than 10 students in offline group";
-                }
-            }
+            }                                    
             if (CheckFullname(fullname))
             {
                 Console.WriteLine($"Created Student {fullname}");
                 Student student = new Student(fullname, no, iswarranted);
                 students.Add(student);
-                return student.Fullname;                
+                group.GroupStudents.Add(student);
+                if(group.Limit<group.GroupStudents.Count)
+                {                    
+                    return $"You passed the limit. This Group's max limit is {group.Limit}";
+                }    
+                return student.Fullname;
             }
             return "Wrong. Write again";
         }

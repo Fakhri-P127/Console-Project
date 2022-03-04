@@ -8,11 +8,11 @@ namespace Console_Project.Models
 {
     class Group
     {
-        public static int count = 0;
+        //public static int count = 0;
         public string No;        
         public bool IsOnline;
         public byte Limit;
-        public List<Student> Students;
+        public List<Student> GroupStudents;
         public Categories Category;
 
         public Group(string no, Categories category, bool isonline)
@@ -22,8 +22,18 @@ namespace Console_Project.Models
             {
                 No = no;
             }
-            IsOnline = isonline;            
             
+            if (isonline)
+            {
+                Limit = 15;                
+            }
+            else
+            {
+                Limit = 10;
+            }
+            
+            IsOnline = isonline;
+            GroupStudents = new List<Student>(Limit);
             switch (category)
             {
                 case Categories.Programming:
@@ -41,7 +51,6 @@ namespace Console_Project.Models
             }
             Category = category;                       
         }
-
         public static bool CheckGroupNo(string groupno)
         {
             if (groupno.Length == 4 && char.IsUpper(groupno[0]))
