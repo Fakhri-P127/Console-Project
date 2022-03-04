@@ -31,7 +31,7 @@ namespace Console_Project.Operations
                 Console.WriteLine("Enter only 'yes' or 'no'");
                 return;
             }
-            if (AcademyService.CheckGroupNo(strNum))
+            if (AcademyService.CheckGroupNo(strNum))//bunu silib yoxla ve academyservice deki conditionları commentden çıxar
             {
                 Console.WriteLine("Choose the category you want to study in");                
                 foreach (Categories item in Enum.GetValues(typeof(Categories)))
@@ -97,7 +97,7 @@ namespace Console_Project.Operations
             Console.WriteLine("Enter the groupno");
             string newGroup = Console.ReadLine();
             Console.WriteLine("Enter the score they got");
-            bool iswarranted;
+            bool iswarranted;// bunu ve isonline i group,studentde false edib yoxla(optimizasiya üçün)
             string strScore = Console.ReadLine();
             bool resultScore = byte.TryParse(strScore, out byte score);
             if (resultScore)
