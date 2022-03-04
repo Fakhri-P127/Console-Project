@@ -100,7 +100,7 @@ namespace Console_Project.Operations
             {               
                     foreach (Student student in group.GroupStudents)
                     {
-                        Console.WriteLine($"Fullname: {student.Fullname},GroupNo: {student.GroupNo}, IsWarranted: {student.IsWarranted}");
+                        Console.WriteLine($"Fullname: {student.Fullname},GroupNo: {student.GroupNo}, IsWarranted: {student.IsWarranted}");//groupno nu yığışdır, onsuz hansı qrupda axtardığımızı yazırıq
                     }                                    
             }            
         }        
@@ -134,6 +134,7 @@ namespace Console_Project.Operations
             }                                    
             if (!CheckFullname(fullname))
             {   //bunlara da ehtiac yoxdur cunki Checkfullname metodu ozu errorlari bildirir
+                //  Buna ehtiyac olmalıdı birde yoxla
                 //Console.ForegroundColor = ConsoleColor.Red;
                 //Console.WriteLine("Fullname is wrong.");
                 return;                
@@ -150,7 +151,7 @@ namespace Console_Project.Operations
             group.GroupStudents.Add(student);                                                
         }
         public static bool CheckGroupNo(string groupno)
-        {                      
+        {                  
             if (groupno.Length == 4 && char.IsUpper(groupno[0]))
             {
                 for (int i = 1; i < groupno.Length; i++)
@@ -178,7 +179,7 @@ namespace Console_Project.Operations
 
             string[] splitFullname = fullname.Split(" ");
             if (splitFullname.Length == 2) //2 cunki(name and surname)
-            {
+            {// Birinci length 2 e beraberdise sonra  hamisini lower edib davam et
                 if (char.IsUpper(splitFullname[0][0]) && char.IsUpper(splitFullname[1][0]))
                 {
                     for (int i = 1; i < splitFullname[0].Length; i++)
