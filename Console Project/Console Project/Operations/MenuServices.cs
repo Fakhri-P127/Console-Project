@@ -106,10 +106,12 @@ namespace Console_Project.Operations
                 {
                     iswarranted = true;
                 }
-                else
+                else// else if(score<50 && score>=0) ele
                 {
                     iswarranted = false;
-                }                
+                }  
+              //Else{
+Cw $"The score must be between 0 and 100"
             }
             else
             {
