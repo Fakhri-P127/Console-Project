@@ -8,7 +8,7 @@ namespace Console_Project.Models
 {
     class Group
     {
-        //public static int count = 0;
+        public static int count = 100;
         public string No;        
         public bool IsOnline;
         public byte Limit;
@@ -17,12 +17,13 @@ namespace Console_Project.Models
 
         public Group(string no, Categories category, bool isonline)
         {            
-            No = no;                                                
+            //No = no;                                                
             IsOnline = isonline;            
             GroupStudents = new List<Student>();
             switch (category)
             {
                 case Categories.Programming:
+                    No = $"P-{count}";
                     Console.WriteLine("You chose Programming class");
                     break;
                 case Categories.Design:
