@@ -20,7 +20,7 @@ namespace Console_Project
                 Console.WriteLine("5. Show all Students");
                 Console.WriteLine("6. Create Student");
                 Console.WriteLine("0.Exit");
-
+                tryagain:
                 string strNum = Console.ReadLine();
                 bool result = int.TryParse(strNum, out num);
                 if (result)
@@ -55,9 +55,14 @@ namespace Console_Project
                             break;
                         default:
                             Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("Enter a valid number");
+                            Console.WriteLine("Enter a valid number : ");
                             break;
                     }
+                }
+                else
+                {
+                    Console.WriteLine("Enter valid input");
+                    goto tryagain;
                 }
             } while (num!=0);            
         }

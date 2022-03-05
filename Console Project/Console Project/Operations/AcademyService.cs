@@ -72,10 +72,14 @@ namespace Console_Project.Operations
                 return;
             }
             existGroup.No = newNo;
+            foreach (Student student in existGroup.GroupStudents)
+            {
+                student.GroupNo = newNo;
+            }
             Console.WriteLine($"{no} Hall has been successfuly changed to {newNo}");
         }
         public Group FindGroup(string no)
-        {
+        {            
             foreach (Group group in Groups)
             {
                 if (group.No.ToLower().Trim() == no.ToLower().Trim())
@@ -86,7 +90,7 @@ namespace Console_Project.Operations
             return null;
         }
         public void ShowStudentsInGroup(string no)
-        {
+        {            
             Group group = FindGroup(no);
             if (group == null)
             {
@@ -106,7 +110,7 @@ namespace Console_Project.Operations
                     {
                         Console.WriteLine($"Fullname: {student.Fullname}, IsWarranted: {student.IsWarranted}");                       
                     }                                    
-            }            
+            }       
         }        
         public void ShowAllStudents()
         {            

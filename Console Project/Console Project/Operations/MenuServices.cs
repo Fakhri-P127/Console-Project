@@ -76,7 +76,6 @@ namespace Console_Project.Operations
             string newNo = Console.ReadLine();
             academyService.EditGroup(no, newNo);
         }
-
         public static void MenuShowStudentsInGroup()
         {
             Console.WriteLine("Which group's students do you want to see?");
