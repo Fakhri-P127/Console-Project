@@ -17,13 +17,12 @@ namespace Console_Project.Models
 
         public Group(string no, Categories category, bool isonline)
         {            
-            //No = no;                                                
+            No = no;
             IsOnline = isonline;            
             GroupStudents = new List<Student>();
             switch (category)
             {
-                case Categories.Programming:
-                    No = $"P-{count}";
+                case Categories.Programming:                    
                     Console.WriteLine("You chose Programming class");
                     break;
                 case Categories.Design:

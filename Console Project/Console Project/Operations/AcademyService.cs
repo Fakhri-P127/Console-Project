@@ -13,8 +13,7 @@ namespace Console_Project.Operations
         public List<Group> Groups => _groups;
         private List<Student> _students = new List<Student>();
         public List<Student> Students => _students;
-
-                
+        
         public void CreateGroup(string no, bool isonline, Categories category)
         {           
             if (no.Length == 0)
@@ -105,11 +104,7 @@ namespace Console_Project.Operations
             {               
                     foreach (Student student in group.GroupStudents)
                     {
-<<<<<<< HEAD
-                        Console.WriteLine($"Fullname: {student.Fullname}, IsWarranted: {student.IsWarranted}");
-=======
-                        Console.WriteLine($"Fullname: {student.Fullname},GroupNo: {student.GroupNo}, IsWarranted: {student.IsWarranted}");//groupno nu yığışdır, onsuz hansı qrupda axtardığımızı yazırıq
->>>>>>> 4a5a1bed0c629649b25b2ecac4d9a7c4c5f217ba
+                        Console.WriteLine($"Fullname: {student.Fullname}, IsWarranted: {student.IsWarranted}");                       
                     }                                    
             }            
         }        
@@ -142,8 +137,7 @@ namespace Console_Project.Operations
                 return;
             }                                    
             if (!CheckFullname(fullname))
-            {   //bunlara da ehtiac yoxdur cunki Checkfullname metodu ozu errorlari bildirir
-                //  Buna ehtiyac olmalıdı birde yoxla
+            {   //bunlara da ehtiac yoxdur cunki Checkfullname metodu ozu errorlari bildirir                
                 //Console.ForegroundColor = ConsoleColor.Red;
                 //Console.WriteLine("Fullname is wrong.");
                 return;                
@@ -166,18 +160,14 @@ namespace Console_Project.Operations
                 for (int i = 1; i < groupno.Length; i++)
                 {
                     if (!char.IsDigit(groupno[i]))
-                    {
-                        //Console.ForegroundColor = ConsoleColor.Red;
-                        //Console.WriteLine("After the first uppercase all 3 characters must be a digit");
+                    {                        
                         return false;
                     }
                 }
                 return true;
             }
             else
-            {
-                //Console.ForegroundColor = ConsoleColor.Red;
-                //Console.WriteLine("GroupNo needs to be 4 characters long. First character must be an uppercase letter and last 3 characters should be all digits");
+            {                
                 return false;
             }
         }
@@ -188,7 +178,7 @@ namespace Console_Project.Operations
 
             string[] splitFullname = fullname.Split(" ");
             if (splitFullname.Length == 2) //2 cunki(name and surname)
-            {// Birinci length 2 e beraberdise sonra  hamisini lower edib davam et
+            {
                 if (char.IsUpper(splitFullname[0][0]) && char.IsUpper(splitFullname[1][0]))
                 {
                     for (int i = 1; i < splitFullname[0].Length; i++)

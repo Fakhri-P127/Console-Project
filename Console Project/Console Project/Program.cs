@@ -9,11 +9,10 @@ namespace Console_Project
         static void Main(string[] args)
         {
             int num;
-            Console.WriteLine("Hello!");
             do
             {
                 Console.ForegroundColor = ConsoleColor.Cyan;
-                
+                Console.WriteLine("Hello!");                                
                 Console.WriteLine("1. Create Group");
                 Console.WriteLine("2. Show All Groups");
                 Console.WriteLine("3. Edit Group");
@@ -24,7 +23,6 @@ namespace Console_Project
 
                 string strNum = Console.ReadLine();
                 bool result = int.TryParse(strNum, out num);
-
                 if (result)
                 {
                     switch (num)
@@ -61,10 +59,7 @@ namespace Console_Project
                             break;
                     }
                 }
-
-            } while (num!=0);
-            
-
+            } while (num!=0);            
         }
     }
 }

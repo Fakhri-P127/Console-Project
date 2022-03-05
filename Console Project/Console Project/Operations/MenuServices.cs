@@ -11,9 +11,9 @@ namespace Console_Project.Operations
         public static AcademyService academyService = new AcademyService();
 
         public static void MenuCreateGroup()
-        {            
+        {
             Console.WriteLine("Insert a GroupNo:");
-            string strNum = Console.ReadLine();
+            string strNo = Console.ReadLine();
             bool isonline;
             Console.WriteLine("Is this group online?\nEnter only: yes/no");            
             string str = Console.ReadLine();
@@ -31,46 +31,38 @@ namespace Console_Project.Operations
                 Console.WriteLine("Enter only 'yes' or 'no'");
                 return;
             }
-<<<<<<< HEAD
-            //if (AcademyService.CheckGroupNo(strNum))
-            //{
-=======
-            if (AcademyService.CheckGroupNo(strNum))//bunu silib yoxla ve academyservice deki conditionları commentden çıxar
+
+            Console.WriteLine("Choose the category you want to study in");
+            foreach (Categories item in Enum.GetValues(typeof(Categories)))
             {
->>>>>>> 4a5a1bed0c629649b25b2ecac4d9a7c4c5f217ba
-                Console.WriteLine("Choose the category you want to study in");                
-                foreach (Categories item in Enum.GetValues(typeof(Categories)))
+                Console.WriteLine($"{(int)item}.{item}");
+            }
+            string strCategory = Console.ReadLine();
+            bool result = int.TryParse(strCategory, out int category);
+            if (result)
+            {
+                switch (category)
                 {
-                    Console.WriteLine($"{(int)item}.{item}");
+                    case (int)Enums.Categories.Design:
+                        academyService.CreateGroup(strNo, isonline, Categories.Design);
+                        break;
+                    case (int)Enums.Categories.Programming:
+                        academyService.CreateGroup(strNo, isonline, Categories.Programming);
+                        break;
+                    case (int)Enums.Categories.SystemAdministration:
+                        academyService.CreateGroup(strNo, isonline, Categories.SystemAdministration);
+                        break;
+                    default:
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Please choose a valid option");
+                        break;
                 }
-                string strCategory = Console.ReadLine();
-                bool result = int.TryParse(strCategory, out int category);                
-                if (result)
-                {
-                    switch (category)
-                    {
-                        case (int)Enums.Categories.Design:
-                            academyService.CreateGroup(strNum, isonline ,Categories.Design);                              
-                            break;
-                        case (int)Enums.Categories.Programming:
-                            academyService.CreateGroup(strNum, isonline, Categories.Programming);
-                            break;
-                        case (int)Enums.Categories.SystemAdministration:
-                            academyService.CreateGroup(strNum, isonline, Categories.SystemAdministration);
-                            break;
-                        default:
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("Please choose a valid option");
-                            break;
-                    }
-                }                       
-            //}                      
+            }
         }
         public static void MenuShowAllGroups()
         {
             academyService.ShowAllGroups();            
         }
-
         public static void MenuEditGroup()
         {
             if (academyService.Groups.Count == 0)
@@ -102,7 +94,7 @@ namespace Console_Project.Operations
             Console.WriteLine("Enter the groupno");
             string newGroup = Console.ReadLine();
             Console.WriteLine("Enter the score they got");
-            bool iswarranted;// bunu ve isonline i group,studentde false edib yoxla(optimizasiya üçün)
+            bool iswarranted;
             string strScore = Console.ReadLine();
             bool resultScore = byte.TryParse(strScore, out byte score);
             if (resultScore)
@@ -111,7 +103,7 @@ namespace Console_Project.Operations
                 {
                     iswarranted = true;
                 }
-<<<<<<< HEAD
+
                 else if (score<50 && score>=0)
                 {
                     iswarranted = false;
@@ -121,20 +113,12 @@ namespace Console_Project.Operations
                     Console.ForegroundColor = ConsoleColor.Red;                   
                     Console.WriteLine("Score must be between 0 and 100");
                     return;
-                }
-=======
-                else// else if(score<50 && score>=0) ele
-                {
-                    iswarranted = false;
-                }  
-              //Else{
-Cw $"The score must be between 0 and 100"
->>>>>>> 4a5a1bed0c629649b25b2ecac4d9a7c4c5f217ba
+                }                
             }
             else
             {
                 Console.ForegroundColor = ConsoleColor.Red; 
-                Console.WriteLine("Write valid value");
+                Console.WriteLine("Enter num value");
                 return;
             }           
             academyService.CreateStudent(fullname, newGroup, iswarranted);           
