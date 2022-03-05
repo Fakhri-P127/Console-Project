@@ -14,7 +14,7 @@ namespace Console_Project.Operations
         {            
             Console.WriteLine("Insert a GroupNo:");
             string strNum = Console.ReadLine();
-            bool isonline = false;
+            bool isonline;
             Console.WriteLine("Is this group online?\nEnter only: yes/no");            
             string str = Console.ReadLine();
             if (str == "yes")
@@ -31,8 +31,8 @@ namespace Console_Project.Operations
                 Console.WriteLine("Enter only 'yes' or 'no'");
                 return;
             }
-            if (AcademyService.CheckGroupNo(strNum))
-            {
+            //if (AcademyService.CheckGroupNo(strNum))
+            //{
                 Console.WriteLine("Choose the category you want to study in");                
                 foreach (Categories item in Enum.GetValues(typeof(Categories)))
                 {
@@ -59,7 +59,7 @@ namespace Console_Project.Operations
                             break;
                     }
                 }                       
-            }                      
+            //}                      
         }
         public static void MenuShowAllGroups()
         {
@@ -106,18 +106,24 @@ namespace Console_Project.Operations
                 {
                     iswarranted = true;
                 }
-                else
+                else if (score<50 && score>=0)
                 {
                     iswarranted = false;
-                }                
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;                   
+                    Console.WriteLine("Score must be between 0 and 100");
+                    return;
+                }
             }
             else
             {
-                Console.ForegroundColor = ConsoleColor.Red;
+                Console.ForegroundColor = ConsoleColor.Red; 
                 Console.WriteLine("Write valid value");
                 return;
             }           
-            academyService.CreateStudent(fullname, newGroup,iswarranted);           
+            academyService.CreateStudent(fullname, newGroup, iswarranted);           
         }
     }
 }

@@ -19,7 +19,7 @@ namespace Console_Project.Models
         {            
             No = no;                                                
             IsOnline = isonline;            
-            GroupStudents = new List<Student>(Limit);
+            GroupStudents = new List<Student>();
             switch (category)
             {
                 case Categories.Programming:

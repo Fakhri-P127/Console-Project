@@ -11,19 +11,24 @@ namespace Console_Project.Operations
     {
         private List<Group> _groups = new List<Group>();
         public List<Group> Groups => _groups;
-        public List<Student> students = new List<Student>();
+        private List<Student> _students = new List<Student>();
+        public List<Student> Students => _students;
+
                 
         public void CreateGroup(string no, bool isonline, Categories category)
-        {
-            //bu kodlara ehtiyac yoxdu, CheckGroupNo metodu bunlari ozu edir
-            //if (no.Length == 0)
-            //{               
-            //    return "Please write something.";
-            //}
-            //if (!CheckGroupNo(no))
-            //{
-            //    return "Please write GroupNo correctly.";
-            //}
+        {           
+            if (no.Length == 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Please input valid GroupNo value.");
+                return;
+            }
+            if (!CheckGroupNo(no))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("GroupNo needs to be 4 characters long. First character must be an uppercase letter and last 3 characters should be digits");
+                return;
+            }
             foreach (Group group1 in Groups)
             {
                 if (isonline)
@@ -100,19 +105,19 @@ namespace Console_Project.Operations
             {               
                     foreach (Student student in group.GroupStudents)
                     {
-                        Console.WriteLine($"Fullname: {student.Fullname},GroupNo: {student.GroupNo}, IsWarranted: {student.IsWarranted}");
+                        Console.WriteLine($"Fullname: {student.Fullname}, IsWarranted: {student.IsWarranted}");
                     }                                    
             }            
         }        
         public void ShowAllStudents()
         {            
-            if (students.Count == 0)
+            if (Students.Count == 0)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("There's no students.");
                 return;
             }
-            foreach (Student student in students)
+            foreach (Student student in Students)
             {                
                 Console.WriteLine($"Fullname: {student.Fullname}\nGroupNo: {student.GroupNo}\nIsWarranted: {student.IsWarranted}");
             }            
@@ -146,7 +151,7 @@ namespace Console_Project.Operations
             }
             Console.WriteLine($"Created Student {fullname}");
             Student student = new Student(fullname, no, iswarranted);
-            students.Add(student);
+            Students.Add(student);
             group.GroupStudents.Add(student);                                                
         }
         public static bool CheckGroupNo(string groupno)
@@ -157,8 +162,8 @@ namespace Console_Project.Operations
                 {
                     if (!char.IsDigit(groupno[i]))
                     {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("After the first uppercase all 3 characters must be a digit");
+                        //Console.ForegroundColor = ConsoleColor.Red;
+                        //Console.WriteLine("After the first uppercase all 3 characters must be a digit");
                         return false;
                     }
                 }
@@ -166,8 +171,8 @@ namespace Console_Project.Operations
             }
             else
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("GroupNo needs to be 4 characters long. First character must be an uppercase letter and last 3 characters should be all digits");
+                //Console.ForegroundColor = ConsoleColor.Red;
+                //Console.WriteLine("GroupNo needs to be 4 characters long. First character must be an uppercase letter and last 3 characters should be all digits");
                 return false;
             }
         }

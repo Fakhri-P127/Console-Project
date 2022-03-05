@@ -14,7 +14,7 @@ namespace Console_Project.Models
         {
             Fullname = fullname;
             GroupNo = groupno;
-            IsWarranted = iswarranted ;
+            IsWarranted = iswarranted;
         }        
     }
 }
