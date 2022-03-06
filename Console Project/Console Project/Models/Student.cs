@@ -10,11 +10,15 @@ namespace Console_Project.Models
         public string GroupNo;
         public bool IsWarranted;
 
-        public Student(string fullname, string groupno, bool iswarranted)
+        public Student(string fullname, string groupno)
         {
             Fullname = fullname;
-            GroupNo = groupno;
-            IsWarranted = iswarranted;
-        }        
+            GroupNo = groupno;                       
+        }
+        public override string ToString()
+        {
+            string status = IsWarranted ? "Yes" : "No";
+            return $"Fullname: {Fullname}, GroupNo: {GroupNo}, IsWarranted: {status}";
+        }
     }
 }

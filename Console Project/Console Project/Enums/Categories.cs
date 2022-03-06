@@ -9,5 +9,5 @@ namespace Console_Project.Enums
         Programming=1,
         Design,
         SystemAdministration
-    }
+    }    
 }
