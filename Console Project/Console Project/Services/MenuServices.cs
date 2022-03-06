@@ -137,38 +137,37 @@ namespace Console_Project.Operations
             Console.WriteLine("Enter Students Fullname");
             string fullname = Console.ReadLine();
             Console.WriteLine("Enter the groupno");
-            string groupNo = Console.ReadLine();
-            
-            #region minorities
-            //bool iswarranted;
-            //string strScore = Console.ReadLine();
-            //bool resultScore = byte.TryParse(strScore, out byte score);
-            //if (resultScore)
-            //{
-            //    if (score >= 50 && score <= 100)
-            //    {
-            //        iswarranted = true;
-            //    }
-
-            //    else if (score<50 && score>=0)
-            //    {
-            //        iswarranted = false;
-            //    }
-            //    else
-            //    {
-            //        Console.ForegroundColor = ConsoleColor.Red;                   
-            //        Console.WriteLine("Score must be between 0 and 100");
-            //        return;
-            //    }                
-            //}
-            //else
-            //{
-            //    Console.ForegroundColor = ConsoleColor.Red; 
-            //    Console.WriteLine("Enter num value");
-            //    return;
-            //}           
-            #endregion
+            string groupNo = Console.ReadLine();                       
             academyService.CreateStudent(fullname, groupNo);            
         }
         }
     }
+#region attempts
+//bool iswarranted;
+//string strScore = Console.ReadLine();
+//bool resultScore = byte.TryParse(strScore, out byte score);
+//if (resultScore)
+//{
+//    if (score >= 50 && score <= 100)
+//    {
+//        iswarranted = true;
+//    }
+
+//    else if (score<50 && score>=0)
+//    {
+//        iswarranted = false;
+//    }
+//    else
+//    {
+//        Console.ForegroundColor = ConsoleColor.Red;                   
+//        Console.WriteLine("Score must be between 0 and 100");
+//        return;
+//    }                
+//}
+//else
+//{
+//    Console.ForegroundColor = ConsoleColor.Red; 
+//    Console.WriteLine("Enter num value");
+//    return;
+//}           
+#endregion
