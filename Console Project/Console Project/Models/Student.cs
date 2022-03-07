@@ -8,17 +8,20 @@ namespace Console_Project.Models
     {
         public string Fullname;
         public string GroupNo;
-        public bool IsWarranted;
+        public bool Type;
+        public bool Online;
 
         public Student(string fullname, string groupno)
         {
             Fullname = fullname;
-            GroupNo = groupno;                       
+            GroupNo = groupno;
+            
         }
         public override string ToString()
         {
-            string status = IsWarranted ? "Yes" : "No";
-            return $"Fullname: {Fullname}, GroupNo: {GroupNo}, IsWarranted: {status}";
+            string statusOnline = Online ? "Yes" : "No";
+            string statusType = Type ? "Warranted" : "Not Warranted";
+            return $"Fullname: {Fullname}, GroupNo: {GroupNo}, Online: {statusOnline}, Type: {statusType}";
         }
     }
 }

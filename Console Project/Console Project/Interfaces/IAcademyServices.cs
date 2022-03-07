@@ -8,7 +8,7 @@ namespace Console_Project.Interfaces
 {
     interface IAcademyServices
     {
-        public void CreateGroup(Categories category, bool isonline);
+        public void CreateGroup(Categories category);
         public void ShowAllGroups();
         public void EditGroupNo(string no, string newNo);
         public void ShowStudentsInGroup(string no);
