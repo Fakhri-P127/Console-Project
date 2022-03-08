@@ -27,25 +27,3 @@ namespace Console_Project.Models
         }
     }
 }
-#region helelik AcademyService de yazmisam
-//switch (category)
-//{
-//    case Categories.Programming:
-//        No = $"P{P_count}";
-//        P_count++;                    
-//        break;
-//    case Categories.Design:
-//        No = $"D{D_count}";
-//        D_count++;                    
-//        break;
-//    case Categories.SystemAdministration:
-//        No = $"S{S_count}";
-//        S_count++;             
-//        break;
-//    default:
-//        Console.Clear();
-//        Console.ForegroundColor = ConsoleColor.Red;
-//        Console.WriteLine("The class you chose does not exist. Please choose valid option");
-//        break;
-//}
-#endregion

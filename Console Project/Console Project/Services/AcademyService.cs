@@ -49,7 +49,7 @@ namespace Console_Project.Operations
                     Console.WriteLine("The class you chose does not exist. Please choose valid option");
                     break;
             }          
-            group.Limit = group.IsOnline ? group.Limit = 15 : group.Limit = 1;
+            group.Limit = group.IsOnline ? group.Limit = 15 : group.Limit = 10;
             AllGroups.Add(group);
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Green;
